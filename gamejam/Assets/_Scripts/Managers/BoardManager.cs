@@ -24,9 +24,11 @@ namespace Assets._Scripts.Managers
         private Board _board;
 
         private bool _countTime = false;
+        public float _timeToEnd;
 
         public Board MakeBoard()
         {
+            _timeToEnd = GameOptions.RoundTimeInSeconds;
             _board = new Board(FieldWidth, FieldHeight, RotateCube);
             _field ??= new GameObject[FieldWidth, FieldHeight];
 
@@ -50,11 +52,17 @@ namespace Assets._Scripts.Managers
 
         public void Update()
         {
-            
+            _timeToEnd -= Time.deltaTime;
+
+            if( _timeToEnd <= 0)
+                GameManager.Instance.ChangeState(GameState.Lose);
         }
 
         public void HandleCellClick(GameCubeComponent gameCubeComponent, Cell cell)
         {
+            if (_timeToEnd <= 0)
+                return;
+
             if (gameCubeComponent.CanBeRotated())
             {
                 _board.ClicksCount++;

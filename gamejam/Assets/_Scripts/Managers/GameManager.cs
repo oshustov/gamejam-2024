@@ -5,37 +5,37 @@ using UnityEngine;
 
 public class GameManager : StaticInstance<GameManager>
 {
-  public static event Action<GameState> OnBeforeStateChanged;
-  public static event Action<GameState> OnAfterStateChanged;
+    public static event Action<GameState> OnBeforeStateChanged;
+    public static event Action<GameState> OnAfterStateChanged;
 
-  public GameState State { get; private set; }
+    public GameState State { get; private set; }
 
-  private Board _board;
+    private Board _board;
 
-  void Start() => ChangeState(GameState.Play);
+    void Start() => ChangeState(GameState.Play);
 
-  public void ChangeState(GameState newState)
-  {
-    OnBeforeStateChanged?.Invoke(newState);
-
-    State = newState;
-    switch (newState)
+    public void ChangeState(GameState newState)
     {
-      case GameState.Play:
-        _board = BoardManager.Instance.MakeBoard();
-        AudioSystem.Instance.PlayMainTheme();
-        break;
+        OnBeforeStateChanged?.Invoke(newState);
+
+        State = newState;
+        switch (newState)
+        {
+            case GameState.Play:
+                _board = BoardManager.Instance.MakeBoard();
+                AudioSystem.Instance.PlayMainTheme();
+                break;
             case GameState.Finish:
                 BoardManager.Instance.Reset();
                 break;
-      default:
-        throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+
+        OnAfterStateChanged?.Invoke(newState);
+
+        Debug.Log($"New state: {newState}");
     }
-
-    OnAfterStateChanged?.Invoke(newState);
-
-    Debug.Log($"New state: {newState}");
-  }
 }
 
 [Serializable]
@@ -43,5 +43,6 @@ public enum GameState
 {
   Starting = 0,
   Play = 1,
-  Finish
+  Finish = 2,
+  Lose = 3
 }
