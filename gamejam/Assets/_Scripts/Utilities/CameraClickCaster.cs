@@ -14,7 +14,7 @@ namespace Assets._Scripts.Utilities
 
         if (Physics.Raycast(ray, out hit))
         {
-          var gameCubeComponent = hit.collider.gameObject.GetComponent<GameCubeComponent>();
+          var gameCubeComponent = hit.collider.gameObject.GetComponentInChildren<GameCubeComponent>();
           if (gameCubeComponent != null)
           {
             gameCubeComponent.Click();

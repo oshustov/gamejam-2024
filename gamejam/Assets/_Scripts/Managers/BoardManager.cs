@@ -22,7 +22,7 @@ namespace Assets._Scripts.Managers
 
     public Board MakeBoard()
     {
-      var board = new Board(FieldWidth, FieldHeight);
+      var board = new Board(FieldWidth, FieldHeight, RotateCube);
       _field ??= new GameObject[FieldWidth, FieldHeight];
 
       for (int i = 0; i < board.Cells.GetLength(0); i++)
@@ -33,7 +33,10 @@ namespace Assets._Scripts.Managers
 
           var newCube = Instantiate(GameCubePrefab, pos, Quaternion.identity, CubesParent);
           newCube.GetComponentInChildren<GameCubeComponent>().SetCell(board.Cells[i, j]);
-          newCube.gameObject.name = $"[{i}][{j}]";
+                    newCube.GetComponentInChildren<GameCubeComponent>().DrawArrows();
+                    newCube.gameObject.name = $"[{i}][{j}]";
+
+                    _field[i,j] = newCube;
         }
       }
 
@@ -42,8 +45,13 @@ namespace Assets._Scripts.Managers
 
     public void HandleCellClick(GameCubeComponent gameCubeComponent, Cell cell)
     {
-      cell.Influence(GameOptions.InfluenceLevel);
-      gameCubeComponent.RotateCube();
+            if(gameCubeComponent.CanBeRotated())
+                cell.Influence(GameOptions.InfluenceLevel, RotateCube);
     }
+
+        public void RotateCube(Cell cell)
+        {
+            _field[cell.X, cell.Y].GetComponentInChildren<GameCubeComponent>().RotateCube();
+        }
   }
 }

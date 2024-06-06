@@ -14,10 +14,13 @@ namespace Assets._Scripts.Entities
     public readonly int TotalCellsCount;
     public readonly InfluenceBehaviourRandomizer InfluenceRandomizer;
 
+        public Action<Cell> RotateCube;
+
     public int ClicksCount { get; private set; }
 
-    public Board(int sizeX, int sizeY)
+    public Board(int sizeX, int sizeY, Action<Cell> rotateCube)
     {
+            RotateCube = rotateCube;
       MaxX = sizeX - 1;
       MaxY = sizeY - 1;
       TotalCellsCount = sizeX * sizeY;
@@ -63,6 +66,9 @@ namespace Assets._Scripts.Entities
     {
       ClicksCount++;
 
+            if (influenceLevel == 0)
+                return;
+
       var behaviour = influencer.Behaviour;
 
       if (behaviour.Up)
@@ -81,25 +87,25 @@ namespace Assets._Scripts.Entities
     private void InfluenceToUpCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X, influencer.Y + 1];
-      upCell.Influence(influenceLevel);
+      upCell.Influence(influenceLevel, RotateCube);
     }
 
     private void InfluenceToDownCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X, influencer.Y - 1];
-      upCell.Influence(influenceLevel);
+      upCell.Influence(influenceLevel, RotateCube);
     }
 
     private void InfluenceToLestCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X - 1, influencer.Y];
-      upCell.Influence(influenceLevel);
+      upCell.Influence(influenceLevel, RotateCube);
     }
 
     private void InfluenceToRightCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X + 1, influencer.Y];
-      upCell.Influence(influenceLevel);
+      upCell.Influence(influenceLevel, RotateCube);
     }
 
     public int GetSuccessCellsCount()

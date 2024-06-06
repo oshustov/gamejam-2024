@@ -1,4 +1,6 @@
 ﻿// ReSharper disable once CheckNamespace
+using System;
+
 namespace Assets._Scripts.Entities
 {
   public class Cell
@@ -19,21 +21,22 @@ namespace Assets._Scripts.Entities
       Behaviour = _board.InfluenceRandomizer.Get(this);
     }
 
-    public void Influence(int influenceLevel)
+    public void Influence(int influenceLevel, Action<Cell> rotateCube)
     {
       if (State == CellState.Hidden)
       {
         State = CellState.Success;
-        return;
       }
-
-      if (State == CellState.Success)
+      else if (State == CellState.Success)
       {
         State = CellState.Hidden;
       }
 
       _board.UpdateState(this, influenceLevel);
       Behaviour = _board.InfluenceRandomizer.Get(this);
+
+            if (rotateCube != null)
+                rotateCube(this);
     }
   }
 }
