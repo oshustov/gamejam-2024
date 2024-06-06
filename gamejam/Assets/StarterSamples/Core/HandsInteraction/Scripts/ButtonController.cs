@@ -20,6 +20,7 @@
 
 
 using System.Collections.Generic;
+using Assets._Scripts.Gameplay;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -32,6 +33,8 @@ namespace OculusSampleFramework
     {
         private const float ENTRY_DOT_THRESHOLD = 0.8f;
         private const float PERP_DOT_THRESHOLD = 0.5f;
+
+        public GameCubeComponent GameCubeComponent;
 
         [SerializeField] private GameObject _proximityZone = null;
         [SerializeField] private GameObject _contactZone = null;
@@ -146,7 +149,8 @@ namespace OculusSampleFramework
 
             if (toolInActionZone)
             {
-                //enabled = false;
+                Debug.Log("Clicked via VR");
+                GameCubeComponent.Click();
                 return;
             }
 
