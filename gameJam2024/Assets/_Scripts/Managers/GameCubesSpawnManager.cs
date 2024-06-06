@@ -21,13 +21,9 @@ namespace Assets._Scripts.Managers
 
     private GameObject[,] _field;
 
-    void Start()
-    {
-      _field = new GameObject[FieldWidth, FieldHeight];
-    }
-
     public void SetArray(GameCube[] cubes)
     {
+      _field ??= new GameObject[FieldWidth, FieldHeight];
       for (int i = 0; i < FieldWidth; i++)
       {
         for (int j = 0; j < FieldHeight; j++)
