@@ -138,8 +138,7 @@ namespace Assets._Scripts.Gameplay
             var randSecs = Random.Range(1, 10);
 
             sequence
-                .AppendInterval(randSecs)
-                .Append(transform.parent.transform.DOMoveZ(100f, randSecs, false))
+                .Join(transform.parent.transform.DOMoveZ(100f, randSecs, false))
                 .Join(transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.eulerAngles.x, transform.parent.transform.rotation.eulerAngles.y, 78), 1f));
 
             return sequence;

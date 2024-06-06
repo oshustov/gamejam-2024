@@ -39,6 +39,7 @@ namespace Assets._Scripts.Managers
                     var pos = new Vector3(i * CubeWidth, j * CubeHeight, 1);
 
                     var newCube = Instantiate(GameCubePrefab, pos, Quaternion.identity, CubesParent);
+
                     newCube.GetComponentInChildren<GameCubeComponent>().SetCell(_board.Cells[i, j]);
                     newCube.GetComponentInChildren<GameCubeComponent>().DrawArrows();
                     newCube.gameObject.name = $"[{i}][{j}]";
@@ -76,8 +77,10 @@ namespace Assets._Scripts.Managers
                 cell.Influence(GameOptions.InfluenceLevel, RotateCube, _board.ClicksCount, (_board.time.ElapsedMilliseconds / 1000), true);
             }
 
-            //if (_board.IsFinished())
+            if (_board.IsFinished())
+            {
                 GameManager.Instance.ChangeState(GameState.Finish);
+            }
         }
 
         public void RotateCube(Cell cell)
