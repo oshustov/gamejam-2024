@@ -14,6 +14,8 @@ namespace Assets._Scripts.Entities
     public readonly int TotalCellsCount;
     public readonly InfluenceBehaviourRandomizer InfluenceRandomizer;
 
+    public int ClicksCount { get; private set; }
+
     public Board(int sizeX, int sizeY)
     {
       MaxX = sizeX - 1;
@@ -59,6 +61,8 @@ namespace Assets._Scripts.Entities
 
     public void UpdateState(Cell influencer, int influenceLevel)
     {
+      ClicksCount++;
+
       var behaviour = influencer.Behaviour;
 
       if (behaviour.Up)
