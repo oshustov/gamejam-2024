@@ -27,6 +27,7 @@ public class GameManager : StaticInstance<GameManager>
                 break;
             case GameState.Finish:
                 BoardManager.Instance.Reset();
+                GameOverManager.Instance.SpawnButtons();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);

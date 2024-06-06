@@ -135,11 +135,9 @@ namespace Assets._Scripts.Gameplay
 
             var sequence = DOTween.Sequence();
 
-            var randSecs = Random.Range(1, 10);
+            var randSecs = Random.Range(1, 5);
 
-            sequence
-                .Join(transform.parent.transform.DOMoveZ(100f, randSecs, false))
-                .Join(transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.eulerAngles.x, transform.parent.transform.rotation.eulerAngles.y, 78), 1f));
+            sequence.Join(transform.parent.transform.DOMoveZ(100f, randSecs, false));
 
             return sequence;
         }

@@ -21,6 +21,7 @@
 
 using System.Collections.Generic;
 using Assets._Scripts.Gameplay;
+using Assets._Scripts.Managers;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -150,7 +151,23 @@ namespace OculusSampleFramework
             if (toolInActionZone)
             {
                 Debug.Log("Clicked via VR");
-                GameCubeComponent.Click();
+                if (GameCubeComponent != null)
+                    GameCubeComponent.Click();
+
+                if (this.gameObject.tag == "Restart")
+                {
+                    Debug.Log("Clicked RESTART");
+                    GameOverManager.Instance.Restart();
+                    return;
+                }
+
+                if (this.gameObject.tag == "Exit")
+                {
+                    Debug.Log("Clicked EXIT");
+                    GameOverManager.Instance.MainMenu();
+                    return;
+                }
+
                 return;
             }
 

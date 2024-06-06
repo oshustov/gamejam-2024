@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Home
   - CompletedTag
+  - SamplesInfoPanel
+  - ExitToMenu
+  - Restart
   layers:
   - Default
   - TransparentFX
