@@ -7574,7 +7574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FieldWidth: 5
   FieldHeight: 5
-  GameCubePrefab: {fileID: 3776923456479025494, guid: 297ace78faad80848ae36794b0d78ecd,
+  GameCubePrefab: {fileID: 5659143454067236176, guid: d995f085cca09674d83254aaf8cefbcd,
     type: 3}
   CubesParent: {fileID: 2013007482}
   CubeWidth: 1

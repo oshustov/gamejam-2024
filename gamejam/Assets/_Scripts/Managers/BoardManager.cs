@@ -32,7 +32,7 @@ namespace Assets._Scripts.Managers
           var pos = new Vector3(i * CubeWidth, j * CubeHeight, 1);
 
           var newCube = Instantiate(GameCubePrefab, pos, Quaternion.identity, CubesParent);
-          newCube.GetComponent<GameCubeComponent>().SetCell(board.Cells[i, j]);
+          newCube.GetComponentInChildren<GameCubeComponent>().SetCell(board.Cells[i, j]);
           newCube.gameObject.name = $"[{i}][{j}]";
         }
       }
