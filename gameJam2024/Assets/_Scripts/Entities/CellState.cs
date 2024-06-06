@@ -4,5 +4,6 @@
   {
     Hidden,
     Success,
+    Victory,
   }
 }
