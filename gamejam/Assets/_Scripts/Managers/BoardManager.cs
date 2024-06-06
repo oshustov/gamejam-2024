@@ -23,6 +23,8 @@ namespace Assets._Scripts.Managers
         private GameObject[,] _field;
         private Board _board;
 
+        private bool _countTime = false;
+
         public Board MakeBoard()
         {
             _board = new Board(FieldWidth, FieldHeight, RotateCube);
@@ -46,10 +48,25 @@ namespace Assets._Scripts.Managers
             return _board;
         }
 
+        public void Update()
+        {
+            
+        }
+
         public void HandleCellClick(GameCubeComponent gameCubeComponent, Cell cell)
         {
             if (gameCubeComponent.CanBeRotated())
-                cell.Influence(GameOptions.InfluenceLevel, RotateCube);
+            {
+                _board.ClicksCount++;
+
+                if (!_countTime)
+                {
+                    _countTime = true;
+                    _board.time.Start();
+                }
+
+                cell.Influence(GameOptions.InfluenceLevel, RotateCube, _board.ClicksCount, (_board.time.ElapsedMilliseconds / 1000), true);
+            }
 
             if (_board.IsFinished())
                 GameManager.Instance.ChangeState(GameState.Finish);

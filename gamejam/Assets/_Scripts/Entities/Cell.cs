@@ -18,10 +18,10 @@ namespace Assets._Scripts.Entities
       X = x;
       Y = y;
       _board = board;
-      Behaviour = _board.InfluenceRandomizer.Get(this);
+      Behaviour = _board.InfluenceRandomizer.Get(this, 0, 0, false);
     }
 
-    public void Influence(int influenceLevel, Action<Cell> rotateCube)
+    public void Influence(int influenceLevel, Action<Cell> rotateCube, int clicks, float totalTimeInSeconds, bool canBeCurse)
     {
       if (State == CellState.Hidden)
       {
@@ -33,7 +33,7 @@ namespace Assets._Scripts.Entities
       }
 
       _board.UpdateState(this, influenceLevel);
-      Behaviour = _board.InfluenceRandomizer.Get(this);
+      Behaviour = _board.InfluenceRandomizer.Get(this, clicks, totalTimeInSeconds, canBeCurse);
 
             if (rotateCube != null)
                 rotateCube(this);

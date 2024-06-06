@@ -14,12 +14,15 @@ namespace Assets._Scripts.Entities
     public readonly bool Left;
     public readonly bool Right;
 
-    public InfluenceBehaviour(bool up, bool down, bool left, bool right)
+        public readonly bool Curse;
+
+    public InfluenceBehaviour(bool up, bool down, bool left, bool right, bool curse)
     {
       Up = up;
       Down = down;
       Left = left;
       Right = right;
+            Curse = curse;
     }
   }
 }

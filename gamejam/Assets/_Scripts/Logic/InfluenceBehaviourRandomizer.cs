@@ -9,20 +9,35 @@ namespace Assets._Scripts.Logic
     private readonly Board _board;
     private readonly Random _random;
 
+        private float timeForCurse = 10;
+
     public InfluenceBehaviourRandomizer(Board board)
     {
       _board = board;
       _random = new Random();
     }
 
-    public InfluenceBehaviour Get(Cell cell)
+    public InfluenceBehaviour Get(Cell cell, int clicks, float totalTimeInSeconds, bool canBeCurse)
     {
       var up = GetForUp(cell);
       var down = GetForDown(cell);
       var left = GetForLeft(cell);
       var right = GetForRight(cell);
 
-      return new InfluenceBehaviour(up, down, left, right);
+            var curse = GetCurse(clicks, totalTimeInSeconds);
+
+            if (!canBeCurse)
+                curse = false;
+
+            if (curse)
+            {
+                up = false;
+                down = false;
+                left = false;
+                right = false;
+            }
+
+      return new InfluenceBehaviour(up, down, left, right, curse);
     }
 
     private bool GetForUp(Cell cell)
@@ -61,5 +76,15 @@ namespace Assets._Scripts.Logic
       var randomNumber = _random.Next(0, 100);
       return randomNumber < 25;
     }
-  }
+
+        private bool GetCurse(int clicks, float timeInSeconds)
+        {
+            if(timeInSeconds < timeForCurse)
+                return false;
+
+           if(clicks % GameOptions.ClickCountForCurse == 0)
+                return true;
+           else return false;
+        }
+    }
 }

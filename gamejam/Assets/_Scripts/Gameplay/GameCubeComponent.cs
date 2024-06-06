@@ -28,6 +28,8 @@ namespace Assets._Scripts.Gameplay
         public GameObject FlippedUpArrow;
         public GameObject FlippedDownArrow;
 
+        public GameObject Curse;
+        public GameObject FlippedCurse;
 
         public void Click()
         {
@@ -72,6 +74,8 @@ namespace Assets._Scripts.Gameplay
                 RightArrow.SetActive(_cell.Behaviour.Right);
                 UpArrow.SetActive(_cell.Behaviour.Up);
                 DownArrow.SetActive(_cell.Behaviour.Down);
+
+                Curse.SetActive(_cell.Behaviour.Curse);
             }
             else
             {
@@ -79,6 +83,8 @@ namespace Assets._Scripts.Gameplay
                 FlippedRightArrow.SetActive(_cell.Behaviour.Right);
                 FlippedUpArrow.SetActive(_cell.Behaviour.Down);
                 FlippedDownArrow.SetActive(_cell.Behaviour.Up);
+
+                FlippedCurse.SetActive(_cell.Behaviour.Curse);
             }
         }
     }
