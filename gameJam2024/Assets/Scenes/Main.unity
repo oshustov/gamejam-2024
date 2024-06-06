@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af0903f08d1229b448194fb95f319f9c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -757,12 +757,6 @@ MonoBehaviour:
   CubesParent: {fileID: 1727938693}
   CubeWidth: 1
   CubeHeight: 1
-  Materials:
-  - {fileID: 2100000, guid: 3b419ad46eae7024384b89ab4fe12070, type: 2}
-  - {fileID: 2100000, guid: 8ae0ea40fa4e2294d8c6333b5b331dee, type: 2}
-  - {fileID: 2100000, guid: af0903f08d1229b448194fb95f319f9c, type: 2}
-  - {fileID: 2100000, guid: 3f1cbeec4b988c94cb9a37e1142cde71, type: 2}
-  - {fileID: 2100000, guid: badaf87cd0236cb4d8ed940695fa1b0e, type: 2}
 --- !u!1 &1727938692
 GameObject:
   m_ObjectHideFlags: 0
