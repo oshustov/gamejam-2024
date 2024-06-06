@@ -12,7 +12,7 @@ public class GameManager : StaticInstance<GameManager>
 
   private Board _board;
 
-  void Start() => ChangeState(GameState.SpawningField);
+  void Start() => ChangeState(GameState.Play);
 
   public void ChangeState(GameState newState)
   {
@@ -21,9 +21,13 @@ public class GameManager : StaticInstance<GameManager>
     State = newState;
     switch (newState)
     {
-      case GameState.SpawningField:
+      case GameState.Play:
         _board = BoardManager.Instance.MakeBoard();
+        AudioSystem.Instance.PlayMainTheme();
         break;
+            case GameState.Finish:
+                BoardManager.Instance.Reset();
+                break;
       default:
         throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
     }
@@ -38,5 +42,6 @@ public class GameManager : StaticInstance<GameManager>
 public enum GameState
 {
   Starting = 0,
-  SpawningField = 1
+  Play = 1,
+  Finish
 }

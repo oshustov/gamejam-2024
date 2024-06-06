@@ -1,57 +1,80 @@
-﻿using Assets._Scripts.Entities;
+﻿using System.Collections;
+using Assets._Scripts.Entities;
 using Assets._Scripts.Gameplay;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Assets._Scripts.Managers
 {
-  public class BoardManager : StaticInstance<BoardManager>
-  {
-    [SerializeField] public int FieldWidth;
-
-    [SerializeField] public int FieldHeight;
-
-    [SerializeField] public GameObject GameCubePrefab;
-
-    [SerializeField] public Transform CubesParent;
-
-    [SerializeField] public float CubeWidth;
-
-    [SerializeField] public float CubeHeight;
-
-    private GameObject[,] _field;
-
-    public Board MakeBoard()
+    public class BoardManager : StaticInstance<BoardManager>
     {
-      var board = new Board(FieldWidth, FieldHeight, RotateCube);
-      _field ??= new GameObject[FieldWidth, FieldHeight];
+        [SerializeField] public int FieldWidth;
 
-      for (int i = 0; i < board.Cells.GetLength(0); i++)
-      {
-        for (int j = 0; j < board.Cells.GetLength(1); j++)
+        [SerializeField] public int FieldHeight;
+
+        [SerializeField] public GameObject GameCubePrefab;
+
+        [SerializeField] public Transform CubesParent;
+
+        [SerializeField] public float CubeWidth;
+
+        [SerializeField] public float CubeHeight;
+
+        private GameObject[,] _field;
+        private Board _board;
+
+        public Board MakeBoard()
         {
-          var pos = new Vector3(i * CubeWidth, j * CubeHeight, 1);
+            _board = new Board(FieldWidth, FieldHeight, RotateCube);
+            _field ??= new GameObject[FieldWidth, FieldHeight];
 
-          var newCube = Instantiate(GameCubePrefab, pos, Quaternion.identity, CubesParent);
-          newCube.GetComponentInChildren<GameCubeComponent>().SetCell(board.Cells[i, j]);
+            for (int i = 0; i < _board.Cells.GetLength(0); i++)
+            {
+                for (int j = 0; j < _board.Cells.GetLength(1); j++)
+                {
+                    var pos = new Vector3(i * CubeWidth, j * CubeHeight, 1);
+
+                    var newCube = Instantiate(GameCubePrefab, pos, Quaternion.identity, CubesParent);
+                    newCube.GetComponentInChildren<GameCubeComponent>().SetCell(_board.Cells[i, j]);
                     newCube.GetComponentInChildren<GameCubeComponent>().DrawArrows();
                     newCube.gameObject.name = $"[{i}][{j}]";
 
-                    _field[i,j] = newCube;
+                    _field[i, j] = newCube;
+                }
+            }
+
+            return _board;
         }
-      }
 
-      return board;
-    }
-
-    public void HandleCellClick(GameCubeComponent gameCubeComponent, Cell cell)
-    {
-            if(gameCubeComponent.CanBeRotated())
+        public void HandleCellClick(GameCubeComponent gameCubeComponent, Cell cell)
+        {
+            if (gameCubeComponent.CanBeRotated())
                 cell.Influence(GameOptions.InfluenceLevel, RotateCube);
-    }
+
+            if (_board.IsFinished())
+                GameManager.Instance.ChangeState(GameState.Finish);
+        }
 
         public void RotateCube(Cell cell)
         {
             _field[cell.X, cell.Y].GetComponentInChildren<GameCubeComponent>().RotateCube();
         }
-  }
+
+        public void Reset()
+        {
+            _board = null;
+
+            foreach (var cell in _field)
+            {
+                StartCoroutine("Die", cell);
+            }
+        }
+
+        IEnumerator Die(object value)
+        {
+            (value as GameObject).transform.DOMoveZ(-4, 1f, false);
+            yield return new WaitForSeconds(1f);
+            DestroyImmediate(value as GameObject);
+        }
+    }
 }

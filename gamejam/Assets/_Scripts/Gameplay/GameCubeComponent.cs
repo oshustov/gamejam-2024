@@ -58,6 +58,7 @@ namespace Assets._Scripts.Gameplay
 
         public void RotateCube()
         {
+            AudioSystem.Instance.PlayRandomStone();
             _tweener = transform.parent.transform.DORotate(_isRotatedForward ? _backwardRotation : _forwardRotation, 0.5f, RotateMode.FastBeyond360);
             _isRotatedForward = !_isRotatedForward;
             DrawArrows();

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,12 @@ using UnityEngine;
 public class AudioSystem : StaticInstance<AudioSystem> {
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _soundsSource;
+    [SerializeField] private AudioSource _birdsSource;
+
+    [SerializeField] private AudioClip _mainTheme;
+    [SerializeField] private AudioClip _birds;
+
+    [SerializeField] private List<AudioClip> _stoneClips;
 
     public void PlayMusic(AudioClip clip) {
         _musicSource.clip = clip;
@@ -20,5 +27,20 @@ public class AudioSystem : StaticInstance<AudioSystem> {
 
     public void PlaySound(AudioClip clip, float vol = 1) {
         _soundsSource.PlayOneShot(clip, vol);
+    }
+
+    public void PlayRandomStone()
+    {
+        var rand = Random.Range(0, _stoneClips.Count);
+        var stoneClip = _stoneClips[rand];
+        PlaySound(stoneClip);
+    }
+
+    public void PlayMainTheme()
+    {
+        PlayMusic(_mainTheme);
+
+        _birdsSource.clip = _birds;
+        _birdsSource.Play();
     }
 }
