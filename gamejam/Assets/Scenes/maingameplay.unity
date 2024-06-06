@@ -9471,6 +9471,10 @@ PrefabInstance:
       propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1461370446, guid: 1a32bb5aaf21df040a86121d1db770fb, type: 3}
+      propertyPath: m_Volume
+      value: 0.819
+      objectReference: {fileID: 0}
     - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
         type: 3}
       propertyPath: _birds
@@ -11236,6 +11240,7 @@ MonoBehaviour:
   CubesParent: {fileID: 0}
   CubeWidth: 0.322
   CubeHeight: 0.322
+  _timeToEnd: 0
 --- !u!1001 &582666122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27665,7 +27670,7 @@ Transform:
   m_GameObject: {fileID: 1506342900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.57, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34254,7 +34259,7 @@ PrefabInstance:
     - target: {fileID: 3288740431203103558, guid: f0afced8187ad3742a1ac035b3563234,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 3288740431203103558, guid: f0afced8187ad3742a1ac035b3563234,
         type: 3}
