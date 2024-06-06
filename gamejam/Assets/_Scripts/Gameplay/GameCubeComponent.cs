@@ -15,7 +15,7 @@ namespace Assets._Scripts.Gameplay
     private TweenerCore<Quaternion, Vector3, QuaternionOptions> _tweener;
 
     private bool _isRotatedForward = false;
-    private Vector3 _forwardRotation = new Vector3(90, 0, 0);
+    private Vector3 _forwardRotation = new Vector3(180, 0, 0);
     private Vector3 _backwardRotation = new Vector3(0, 0, 0);
 
     public void Click()
@@ -41,7 +41,7 @@ namespace Assets._Scripts.Gameplay
       if (_tweener != null && _tweener.active)
         return;
 
-      _tweener = transform.DORotate(_isRotatedForward ? _backwardRotation : _forwardRotation, 0.5f, RotateMode.FastBeyond360);
+      _tweener = transform.parent.transform.DORotate(_isRotatedForward ? _backwardRotation : _forwardRotation, 0.5f, RotateMode.FastBeyond360);
       _isRotatedForward = !_isRotatedForward;
     }
   }

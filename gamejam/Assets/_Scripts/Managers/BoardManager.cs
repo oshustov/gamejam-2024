@@ -14,9 +14,9 @@ namespace Assets._Scripts.Managers
 
     [SerializeField] public Transform CubesParent;
 
-    [SerializeField] public int CubeWidth;
+    [SerializeField] public float CubeWidth;
 
-    [SerializeField] public int CubeHeight;
+    [SerializeField] public float CubeHeight;
 
     private GameObject[,] _field;
 
