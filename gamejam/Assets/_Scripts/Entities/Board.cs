@@ -14,6 +14,8 @@ namespace Assets._Scripts.Entities
     public readonly int TotalCellsCount;
     public readonly InfluenceBehaviourRandomizer InfluenceRandomizer;
 
+    public int ClicksCount { get; private set; }
+
     public Board(int sizeX, int sizeY)
     {
       MaxX = sizeX - 1;
@@ -57,49 +59,47 @@ namespace Assets._Scripts.Entities
       return true;
     }
 
-    public void UpdateState(Cell influencer)
+    public void UpdateState(Cell influencer, int influenceLevel)
     {
+      ClicksCount++;
+
       var behaviour = influencer.Behaviour;
 
       if (behaviour.Up)
-        InfluenceToUpCell(influencer);
+        InfluenceToUpCell(influencer, influenceLevel - 1);
 
       if (behaviour.Down)
-        InfluenceToDownCell(influencer);
+        InfluenceToDownCell(influencer, influenceLevel - 1);
 
       if (behaviour.Left)
-        InfluenceToLestCell(influencer);
+        InfluenceToLestCell(influencer, influenceLevel - 1);
 
       if (behaviour.Right)
-        InfluenceToRightCell(influencer);
+        InfluenceToRightCell(influencer, influenceLevel - 1);
     }
 
-    private void InfluenceToUpCell(Cell influencer)
+    private void InfluenceToUpCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X, influencer.Y + 1];
-      upCell.Influence();
-      UpdateState(upCell);
+      upCell.Influence(influenceLevel);
     }
 
-    private void InfluenceToDownCell(Cell influencer)
+    private void InfluenceToDownCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X, influencer.Y - 1];
-      upCell.Influence();
-      UpdateState(upCell);
+      upCell.Influence(influenceLevel);
     }
 
-    private void InfluenceToLestCell(Cell influencer)
+    private void InfluenceToLestCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X - 1, influencer.Y];
-      upCell.Influence();
-      UpdateState(upCell);
+      upCell.Influence(influenceLevel);
     }
 
-    private void InfluenceToRightCell(Cell influencer)
+    private void InfluenceToRightCell(Cell influencer, int influenceLevel)
     {
       var upCell = Cells[influencer.X + 1, influencer.Y];
-      upCell.Influence();
-      UpdateState(upCell);
+      upCell.Influence(influenceLevel);
     }
 
     public int GetSuccessCellsCount()
