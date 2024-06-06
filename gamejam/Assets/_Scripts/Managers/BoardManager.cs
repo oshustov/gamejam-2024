@@ -42,6 +42,7 @@ namespace Assets._Scripts.Managers
 
     public void HandleCellClick(GameCubeComponent gameCubeComponent, Cell cell)
     {
+      cell.Influence(GameOptions.InfluenceLevel);
       gameCubeComponent.RotateCube();
     }
   }

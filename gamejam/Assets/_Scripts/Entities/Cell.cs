@@ -19,7 +19,7 @@ namespace Assets._Scripts.Entities
       Behaviour = _board.InfluenceRandomizer.Get(this);
     }
 
-    public void Influence()
+    public void Influence(int influenceLevel)
     {
       if (State == CellState.Hidden)
       {
@@ -32,7 +32,7 @@ namespace Assets._Scripts.Entities
         State = CellState.Hidden;
       }
 
-      _board.UpdateState(this);
+      _board.UpdateState(this, influenceLevel);
       Behaviour = _board.InfluenceRandomizer.Get(this);
     }
   }
