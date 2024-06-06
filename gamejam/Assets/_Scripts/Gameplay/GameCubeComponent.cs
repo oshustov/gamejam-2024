@@ -28,8 +28,48 @@ namespace Assets._Scripts.Gameplay
         public GameObject FlippedUpArrow;
         public GameObject FlippedDownArrow;
 
+
         public GameObject Curse;
         public GameObject FlippedCurse;
+
+        public float ShakeDuration = 5f;
+        public float ShakeStrength = 0.05f;
+        public int ShakeVibrato = 1;
+        public float ShakeRandomness = 90f;
+
+        private Vector3 _initialPos;
+        private Vector3 _minBounds;
+        private Vector3 _maxBounds;
+
+        private Tweener _shakingTween;
+        private bool _doShaking = true;
+
+        void Start()
+        {
+            _initialPos = transform.parent.position;
+            _minBounds = new Vector3(0, 0, -0.1f);
+            _maxBounds = new Vector3(0.01f, 0.01f, 0.1f);
+        }
+
+        void Update()
+        {
+            if (_doShaking)
+            {
+                _shakingTween = this.transform.parent.transform
+                    .DOShakePosition(ShakeDuration, ShakeStrength, ShakeVibrato, ShakeRandomness)
+                    .SetLoops(-1, LoopType.Restart)
+                    .OnUpdate(EnsureInBounds);
+            }
+        }
+
+        private void EnsureInBounds()
+        {
+            Vector3 clampedPosition = transform.position;
+            clampedPosition.x = Mathf.Clamp(clampedPosition.x, _initialPos.x + _minBounds.x, _initialPos.x + _maxBounds.x);
+            clampedPosition.y = Mathf.Clamp(clampedPosition.y, _initialPos.y + _minBounds.y, _initialPos.y + _maxBounds.y);
+            clampedPosition.z = Mathf.Clamp(clampedPosition.z, _initialPos.z + _minBounds.z, _initialPos.z + _maxBounds.z);
+            transform.position = clampedPosition;
+        }
 
         public void Click()
         {
@@ -86,6 +126,23 @@ namespace Assets._Scripts.Gameplay
 
                 FlippedCurse.SetActive(_cell.Behaviour.Curse);
             }
+        }
+
+        public Sequence PlayDying()
+        {
+            _shakingTween?.Complete(false);
+            _doShaking = false;
+
+            var sequence = DOTween.Sequence();
+
+            var randSecs = Random.Range(1, 10);
+
+            sequence
+                .AppendInterval(randSecs)
+                .Append(transform.parent.transform.DOMoveZ(100f, randSecs, false))
+                .Join(transform.parent.transform.DORotate(new Vector3(transform.parent.transform.rotation.eulerAngles.x, transform.parent.transform.rotation.eulerAngles.y, 78), 1f));
+
+            return sequence;
         }
     }
 }

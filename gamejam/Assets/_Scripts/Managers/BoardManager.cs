@@ -76,7 +76,7 @@ namespace Assets._Scripts.Managers
                 cell.Influence(GameOptions.InfluenceLevel, RotateCube, _board.ClicksCount, (_board.time.ElapsedMilliseconds / 1000), true);
             }
 
-            if (_board.IsFinished())
+            //if (_board.IsFinished())
                 GameManager.Instance.ChangeState(GameState.Finish);
         }
 
@@ -97,8 +97,15 @@ namespace Assets._Scripts.Managers
 
         IEnumerator Die(object value)
         {
-            (value as GameObject).transform.DOMoveZ(-4, 1f, false);
-            yield return new WaitForSeconds(1f);
+            var go = value as GameObject;
+            if (go == null)
+            {
+                Debug.Log("Can't animate destroy because value is not a game object");
+                yield break;
+            }
+
+            var gameCubeComponent = go.GetComponentInChildren<GameCubeComponent>();
+            yield return gameCubeComponent.PlayDying().WaitForCompletion();
             DestroyImmediate(value as GameObject);
         }
     }
