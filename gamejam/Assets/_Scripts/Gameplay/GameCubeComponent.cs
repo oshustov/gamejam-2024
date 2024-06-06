@@ -68,7 +68,7 @@ namespace Assets._Scripts.Gameplay
             clampedPosition.x = Mathf.Clamp(clampedPosition.x, _initialPos.x + _minBounds.x, _initialPos.x + _maxBounds.x);
             clampedPosition.y = Mathf.Clamp(clampedPosition.y, _initialPos.y + _minBounds.y, _initialPos.y + _maxBounds.y);
             clampedPosition.z = Mathf.Clamp(clampedPosition.z, _initialPos.z + _minBounds.z, _initialPos.z + _maxBounds.z);
-            transform.position = clampedPosition;
+            transform.parent.position = clampedPosition;
         }
 
         public void Click()
