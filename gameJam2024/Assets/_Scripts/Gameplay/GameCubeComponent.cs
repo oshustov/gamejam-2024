@@ -11,6 +11,7 @@ namespace Assets._Scripts.Gameplay
   public class GameCubeComponent : MonoBehaviour
   {
     private Cell _cell;
+    private CellState _currentState;
     private TweenerCore<Quaternion, Vector3, QuaternionOptions> _tweener;
 
     private bool _isRotatedForward = false;
@@ -29,14 +30,17 @@ namespace Assets._Scripts.Gameplay
     public void SetCell(Cell cell)
     {
       _cell = cell;
+      if (_cell.State != _currentState)
+        RotateCube();
+
+      _currentState = _cell.State;
     }
 
-    public void RotateCube(Vector3 axis)
+    public void RotateCube()
     {
       if (_tweener != null && _tweener.active)
         return;
 
-      // Apply the new rotation
       _tweener = transform.DORotate(_isRotatedForward ? _backwardRotation : _forwardRotation, 0.5f, RotateMode.FastBeyond360);
       _isRotatedForward = !_isRotatedForward;
     }
