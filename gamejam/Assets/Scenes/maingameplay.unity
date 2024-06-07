@@ -11627,8 +11627,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87418cafb0570da41bd992b3c7a7b6fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FieldWidth: 8
-  FieldHeight: 4
+  FieldWidth: 10
+  FieldHeight: 5
   GameCubePrefab: {fileID: 5659143454067236176, guid: d995f085cca09674d83254aaf8cefbcd,
     type: 3}
   CubesParent: {fileID: 0}
@@ -29468,7 +29468,7 @@ Transform:
   m_GameObject: {fileID: 1506342900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.57, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36664,12 +36664,12 @@ PrefabInstance:
     - target: {fileID: 3288740431203103558, guid: f0afced8187ad3742a1ac035b3563234,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.57
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3288740431203103558, guid: f0afced8187ad3742a1ac035b3563234,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3288740431203103558, guid: f0afced8187ad3742a1ac035b3563234,
         type: 3}
