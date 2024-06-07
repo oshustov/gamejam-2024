@@ -2,6 +2,7 @@
 using Assets._Scripts.Entities;
 using Assets._Scripts.Gameplay;
 using DG.Tweening;
+using OculusSampleFramework;
 using UnityEngine;
 
 namespace Assets._Scripts.Managers
@@ -107,9 +108,11 @@ namespace Assets._Scripts.Managers
                 yield break;
             }
 
+            go.GetComponent<ButtonController>().ForceResetButton();
             var gameCubeComponent = go.GetComponentInChildren<GameCubeComponent>();
             yield return gameCubeComponent.PlayDying().WaitForCompletion();
-            DestroyImmediate(value as GameObject);
+            go.SetActive(false);
+            //Destroy(go);
         }
     }
 }

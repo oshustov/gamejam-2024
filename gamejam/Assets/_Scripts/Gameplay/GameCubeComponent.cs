@@ -37,6 +37,8 @@ namespace Assets._Scripts.Gameplay
         public int ShakeVibrato = 1;
         public float ShakeRandomness = 90f;
 
+        public Ease Ease;
+
         private Vector3 _initialPos;
         private Vector3 _minBounds;
         private Vector3 _maxBounds;
@@ -53,13 +55,21 @@ namespace Assets._Scripts.Gameplay
 
         void Update()
         {
-            if (_doShaking)
+            if (_doShaking && _shakingTween == null)
             {
-                _shakingTween = this.transform.parent.transform
+                _shakingTween = transform.parent.transform
                     .DOShakePosition(ShakeDuration, ShakeStrength, ShakeVibrato, ShakeRandomness)
                     .SetLoops(-1, LoopType.Restart)
+                    .SetEase(Ease)
                     .OnUpdate(EnsureInBounds);
             }
+        }
+
+        void OnDestroy()
+        {
+            _shakingTween?.Complete();
+            _doShaking = false;
+            _shakingTween = null;
         }
 
         private void EnsureInBounds()

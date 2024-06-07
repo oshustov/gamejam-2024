@@ -18,8 +18,7 @@ namespace Assets._Scripts.Managers
 
         public void Restart()
         {
-            DestroyImmediate(_gameOver);
-            GameManager.Instance.ChangeState(GameState.Play);
+            SceneManager.LoadScene("maingameplay");
         }
 
         public void MainMenu()

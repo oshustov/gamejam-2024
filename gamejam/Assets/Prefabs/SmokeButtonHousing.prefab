@@ -1646,10 +1646,11 @@ MonoBehaviour:
   FlippedDownArrow: {fileID: 1480034945596844328}
   Curse: {fileID: 6384749795625671677}
   FlippedCurse: {fileID: 2435456168002926167}
-  ShakeDuration: 5
-  ShakeStrength: 0.003
+  ShakeDuration: 3
+  ShakeStrength: 0.02
   ShakeVibrato: 1
   ShakeRandomness: 90
+  Ease: 1
 --- !u!65 &3598087120891846497
 BoxCollider:
   m_ObjectHideFlags: 0
