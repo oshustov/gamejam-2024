@@ -1,4 +1,5 @@
 ﻿
+using Assets._Scripts.Systems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,13 @@ namespace Assets._Scripts.Managers
 
         public void OnStartClick()
         {
+            FindObjectOfType<PersistDataSystem>().IsNormal = true;
+            SceneManager.LoadScene("maingameplay");
+        }
+
+        public void OnStartHardClick()
+        {
+            FindObjectOfType<PersistDataSystem>().IsHard = true;
             SceneManager.LoadScene("maingameplay");
         }
 

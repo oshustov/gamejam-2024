@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Assets._Scripts.Entities;
 using Assets._Scripts.Gameplay;
+using Assets._Scripts.Systems;
 using DG.Tweening;
 using OculusSampleFramework;
 using UnityEngine;
@@ -21,11 +22,22 @@ namespace Assets._Scripts.Managers
 
         [SerializeField] public float CubeHeight;
 
+        private int InfluenceLevel = GameOptions.InfluenceLevelNormal;
+
         private GameObject[,] _field;
         private Board _board;
 
         private bool _countTime = false;
         public float _timeToEnd;
+
+        void Start()
+        {
+            InfluenceLevel = FindObjectOfType<PersistDataSystem>()?.IsHard ?? false
+                ? GameOptions.InfluenceLevelHard
+                : GameOptions.InfluenceLevelNormal;
+
+            Debug.Log($"InfluenceLevel is {InfluenceLevel}");
+        }
 
         public Board MakeBoard()
         {
@@ -75,7 +87,7 @@ namespace Assets._Scripts.Managers
                     _board.time.Start();
                 }
 
-                cell.Influence(GameOptions.InfluenceLevel, RotateCube, _board.ClicksCount, (_board.time.ElapsedMilliseconds / 1000), true);
+                cell.Influence(InfluenceLevel, RotateCube, _board.ClicksCount, (_board.time.ElapsedMilliseconds / 1000), true);
             }
 
             if (_board.IsFinished())
