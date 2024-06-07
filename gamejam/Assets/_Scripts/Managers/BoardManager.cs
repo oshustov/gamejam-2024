@@ -30,7 +30,7 @@ namespace Assets._Scripts.Managers
         private int InfluenceLevel = GameOptions.InfluenceLevelNormal;
 
         private GameObject[,] _field;
-        private Board _board;
+        public Board _board;
 
         private bool _countTime = false;
         public float _timeToEnd;
@@ -93,7 +93,11 @@ namespace Assets._Scripts.Managers
         {
             _timeToEnd -= Time.deltaTime;
 
-            if(!isFinished)
+
+            //GameManager.Instance.ChangeState(GameState.Finish);
+            //isFinished = true;
+
+            if (!isFinished)
                 TextTime.text = $"Time: {(int)_timeToEnd}";
 
             if (_timeToEnd < 20)
