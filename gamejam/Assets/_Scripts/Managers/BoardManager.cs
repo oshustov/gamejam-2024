@@ -24,7 +24,7 @@ namespace Assets._Scripts.Managers
 
         [SerializeField] public float CubeHeight;
 
-        public TextMeshPro TextTime;
+        public TextMeshProUGUI TextTime;
 
         private int InfluenceLevel = GameOptions.InfluenceLevelNormal;
 
@@ -36,14 +36,14 @@ namespace Assets._Scripts.Managers
 
         void Start()
         {
-            var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard;
-            InfluenceLevel = isHard ?? false
+            var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard ?? false;
+            InfluenceLevel = isHard
                 ? GameOptions.InfluenceLevelHard
                 : GameOptions.InfluenceLevelNormal;
 
-            _timeToEnd = isHard ?? false
-                ? GameOptions.RoundTimeInSeconds
-                : GameOptions.RoundTimeInSecondsHard;
+            _timeToEnd = isHard
+                ? GameOptions.RoundTimeInSecondsHard
+                : GameOptions.RoundTimeInSeconds;
 
             Debug.Log($"InfluenceLevel is {InfluenceLevel}");
         }
@@ -75,6 +75,13 @@ namespace Assets._Scripts.Managers
         public void Update()
         {
             _timeToEnd -= Time.deltaTime;
+
+            TextTime.text = $"Time: {(int)_timeToEnd}";
+
+            if (_timeToEnd < 20)
+            {
+                TextTime.color = Color.red;
+            }
 
             if( _timeToEnd <= 0)
                 GameManager.Instance.ChangeState(GameState.Lose);
