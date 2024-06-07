@@ -11,10 +11,13 @@ namespace Assets._Scripts.Logic
 
         private float timeForCurse = 10;
 
-    public InfluenceBehaviourRandomizer(Board board)
+        private bool _isHard = false;
+
+    public InfluenceBehaviourRandomizer(Board board, bool isHard)
     {
       _board = board;
       _random = new Random();
+            _isHard = isHard;
     }
 
     public InfluenceBehaviour Get(Cell cell, int clicks, float totalTimeInSeconds, bool canBeCurse)
@@ -79,6 +82,9 @@ namespace Assets._Scripts.Logic
 
         private bool GetCurse(int clicks, float timeInSeconds)
         {
+            if(_isHard)
+                return false;
+
             if(timeInSeconds < timeForCurse)
                 return false;
 

@@ -23,14 +23,14 @@ namespace Assets._Scripts.Entities
         public int ClicksCount { get; set; }
         public Stopwatch time = new Stopwatch();
 
-        public Board(int sizeX, int sizeY, Action<Cell> rotateCube)
+        public Board(int sizeX, int sizeY, Action<Cell> rotateCube, bool isHard)
         {
             _random = new Random();
             RotateCube = rotateCube;
             MaxX = sizeX - 1;
             MaxY = sizeY - 1;
             TotalCellsCount = sizeX * sizeY;
-            InfluenceRandomizer = new InfluenceBehaviourRandomizer(this);
+            InfluenceRandomizer = new InfluenceBehaviourRandomizer(this, isHard);
 
             Cells = new Cell[sizeX, sizeY];
 

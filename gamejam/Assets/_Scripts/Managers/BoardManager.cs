@@ -62,7 +62,8 @@ namespace Assets._Scripts.Managers
 
         public Board MakeBoard()
         {
-            _board = new Board(FieldWidth, FieldHeight, RotateCube);
+            var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard ?? false;
+            _board = new Board(FieldWidth, FieldHeight, RotateCube, isHard);
             _field ??= new GameObject[FieldWidth, FieldHeight];
 
             for (int i = 0; i < _board.Cells.GetLength(0); i++)
