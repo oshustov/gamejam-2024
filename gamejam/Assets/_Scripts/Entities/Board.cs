@@ -68,51 +68,78 @@ namespace Assets._Scripts.Entities
             return true;
         }
 
-        public void UpdateState(Cell influencer, int influenceLevel)
+        public bool UpdateState(Cell influencer, int influenceLevel, bool canBeBomb)
         {
             if (influenceLevel == 0)
-                return;
+                return false;
 
             var behaviour = influencer.Behaviour;
-
+            var isBomb = false;
+            var hasBomb = false;
             if (behaviour.Up)
-                InfluenceToUpCell(influencer, influenceLevel - 1);
+                isBomb = InfluenceToUpCell(influencer, influenceLevel - 1, canBeBomb);
+
+            if (isBomb)
+            {
+                hasBomb = true;
+                canBeBomb = false;
+            }
 
             if (behaviour.Down)
-                InfluenceToDownCell(influencer, influenceLevel - 1);
+                isBomb = InfluenceToDownCell(influencer, influenceLevel - 1, canBeBomb);
+
+            if (isBomb)
+            {
+                hasBomb = true;
+                canBeBomb = false;
+            }
 
             if (behaviour.Left)
-                InfluenceToLestCell(influencer, influenceLevel - 1);
+                isBomb = InfluenceToLestCell(influencer, influenceLevel - 1, canBeBomb);
+
+            if (isBomb)
+            {
+                hasBomb = true;
+                canBeBomb = false;
+            }
 
             if (behaviour.Right)
-                InfluenceToRightCell(influencer, influenceLevel - 1);
+                isBomb = InfluenceToRightCell(influencer, influenceLevel - 1, canBeBomb);
+
+            if (isBomb)
+            {
+                hasBomb = true;
+                canBeBomb = false;
+            }
 
             if (behaviour.Curse)
                 InfluenceCurseCell(influencer, influenceLevel - 1);
+
+            return hasBomb;
         }
 
-        private void InfluenceToUpCell(Cell influencer, int influenceLevel)
+        private bool InfluenceToUpCell(Cell influencer, int influenceLevel, bool canBeBomb)
         {
             var upCell = Cells[influencer.X, influencer.Y + 1];
-            upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), false);
+            return upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), canBeBomb);
         }
 
-        private void InfluenceToDownCell(Cell influencer, int influenceLevel)
+        private bool InfluenceToDownCell(Cell influencer, int influenceLevel, bool canBeBomb)
         {
             var upCell = Cells[influencer.X, influencer.Y - 1];
-            upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), false);
+            return upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), canBeBomb);
         }
 
-        private void InfluenceToLestCell(Cell influencer, int influenceLevel)
+        private bool InfluenceToLestCell(Cell influencer, int influenceLevel, bool canBeBomb)
         {
             var upCell = Cells[influencer.X - 1, influencer.Y];
-            upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), false);
+            return upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), canBeBomb);
         }
 
-        private void InfluenceToRightCell(Cell influencer, int influenceLevel)
+        private bool InfluenceToRightCell(Cell influencer, int influenceLevel, bool canBeBomb)
         {
             var upCell = Cells[influencer.X + 1, influencer.Y];
-            upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), false);
+            return upCell.Influence(influenceLevel, RotateCube, ClicksCount, (time.ElapsedMilliseconds / 1000), canBeBomb);
         }
 
         private void InfluenceCurseCell(Cell influencer, int influenceLevel)
