@@ -1643,7 +1643,7 @@ MonoBehaviour:
   YouWinObj: {fileID: 5187308012987465649}
   YouLoseObj: {fileID: 1665783443956915857}
   TimeScoreText: {fileID: 8472777655187410709}
-  ClickScoreText: {fileID: 0}
+  ClickScoreText: {fileID: 2604424823324640679}
 --- !u!1 &8432420978477356866
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,8 +58,8 @@ namespace Assets._Scripts.Managers
             var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard;
 
             var givenTime = isHard ?? false
-                ? GameOptions.RoundTimeInSeconds
-                : GameOptions.RoundTimeInSecondsHard;
+                ? GameOptions.RoundTimeInSecondsHard
+                : GameOptions.RoundTimeInSeconds;
 
             return Mathf.Round(givenTime - _timeToEnd);
         }
@@ -85,6 +85,8 @@ namespace Assets._Scripts.Managers
                     _field[i, j] = newCube;
                 }
             }
+
+            TextTime.gameObject.SetActive(true);
 
             return _board;
         }
@@ -151,6 +153,7 @@ namespace Assets._Scripts.Managers
         public void Reset()
         {
             _board = null;
+            TextTime.gameObject.SetActive(false);
 
             foreach (var cell in _field)
             {
