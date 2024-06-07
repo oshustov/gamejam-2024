@@ -32,7 +32,8 @@ namespace Assets._Scripts.Managers
             if (!isWin)
                 popup.YouLoseObj.SetActive(true);
 
-            popup.TimeScoreText.text = $"{seconds.ToString()} seconds! {clicks} clicks!";
+            popup.TimeScoreText.text = $"{seconds.ToString()} seconds!";
+            popup.ClickScoreText.text = $"{clicks.ToString()} clicks!";
         }
 
         public void Restart()

@@ -8,5 +8,6 @@ namespace Assets._Scripts.UI
         public GameObject YouWinObj;
         public GameObject YouLoseObj;
         public TextMeshProUGUI TimeScoreText;
+        public TextMeshProUGUI ClickScoreText;
     }
 }
