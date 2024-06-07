@@ -38,7 +38,7 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     {
         var rand = Random.Range(0, _stoneClips.Count);
         var stoneClip = _stoneClips[rand];
-        PlaySound(stoneClip);
+        PlaySound(stoneClip, 0.7f);
     }
 
     public void PlayMainTheme()
