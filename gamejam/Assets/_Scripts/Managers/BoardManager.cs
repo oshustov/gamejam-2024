@@ -152,7 +152,6 @@ namespace Assets._Scripts.Managers
 
         public void Reset()
         {
-            _board = null;
             TextTime.gameObject.SetActive(false);
 
             foreach (var cell in _field)
