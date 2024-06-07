@@ -161,7 +161,7 @@ namespace OculusSampleFramework
                     return;
                 }
 
-                if (this.gameObject.tag == "Exit")
+                if (this.gameObject.tag == "ExitToMenu")
                 {
                     Debug.Log("Clicked EXIT");
                     GameOverManager.Instance.MainMenu();
