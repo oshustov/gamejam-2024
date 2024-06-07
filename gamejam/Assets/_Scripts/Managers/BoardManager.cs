@@ -37,6 +37,8 @@ namespace Assets._Scripts.Managers
 
         public GameObject CurseFX;
 
+        public bool isFinished = false;
+
         void Start()
         {
             var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard ?? false;
@@ -91,15 +93,19 @@ namespace Assets._Scripts.Managers
         {
             _timeToEnd -= Time.deltaTime;
 
-            TextTime.text = $"Time: {(int)_timeToEnd}";
+            if(!isFinished)
+                TextTime.text = $"Time: {(int)_timeToEnd}";
 
             if (_timeToEnd < 20)
             {
                 TextTime.color = Color.red;
             }
 
-            if( _timeToEnd <= 0)
+            if (_timeToEnd <= 0)
+            {
                 GameManager.Instance.ChangeState(GameState.Lose);
+                isFinished = true;
+            }
         }
 
         public void HandleCellClick(GameCubeComponent gameCubeComponent, Cell cell)
@@ -129,6 +135,7 @@ namespace Assets._Scripts.Managers
             if (_board.IsFinished())
             {
                 GameManager.Instance.ChangeState(GameState.Finish);
+                isFinished = true;
             }
         }
 
