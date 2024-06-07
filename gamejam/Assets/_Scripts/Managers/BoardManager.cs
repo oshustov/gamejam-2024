@@ -4,7 +4,9 @@ using Assets._Scripts.Gameplay;
 using Assets._Scripts.Systems;
 using DG.Tweening;
 using OculusSampleFramework;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets._Scripts.Managers
 {
@@ -22,6 +24,8 @@ namespace Assets._Scripts.Managers
 
         [SerializeField] public float CubeHeight;
 
+        public TextMeshPro TextTime;
+
         private int InfluenceLevel = GameOptions.InfluenceLevelNormal;
 
         private GameObject[,] _field;
@@ -32,16 +36,20 @@ namespace Assets._Scripts.Managers
 
         void Start()
         {
-            InfluenceLevel = FindObjectOfType<PersistDataSystem>()?.IsHard ?? false
+            var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard;
+            InfluenceLevel = isHard ?? false
                 ? GameOptions.InfluenceLevelHard
                 : GameOptions.InfluenceLevelNormal;
+
+            _timeToEnd = isHard ?? false
+                ? GameOptions.RoundTimeInSeconds
+                : GameOptions.RoundTimeInSecondsHard;
 
             Debug.Log($"InfluenceLevel is {InfluenceLevel}");
         }
 
         public Board MakeBoard()
         {
-            _timeToEnd = GameOptions.RoundTimeInSeconds;
             _board = new Board(FieldWidth, FieldHeight, RotateCube);
             _field ??= new GameObject[FieldWidth, FieldHeight];
 

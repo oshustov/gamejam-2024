@@ -1856,8 +1856,8 @@ MonoBehaviour:
   FlippedRightArrow: {fileID: 794045175945400186}
   FlippedUpArrow: {fileID: 3176746665622273875}
   FlippedDownArrow: {fileID: 1480034945596844328}
-  Curse: {fileID: 6384749795625671677}
-  FlippedCurse: {fileID: 2435456168002926167}
+  Curse: {fileID: 2435456168002926167}
+  FlippedCurse: {fileID: 6384749795625671677}
   ShakeDuration: 3
   ShakeStrength: 0.02
   ShakeVibrato: 1
