@@ -11,6 +11,7 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     [SerializeField] private AudioSource _birdsSource;
 
     [SerializeField] private AudioClip _mainTheme;
+    [SerializeField] private AudioClip _mainMenuTheme;
     [SerializeField] private AudioClip _birds;
 
     [SerializeField] private List<AudioClip> _stoneClips;
@@ -42,5 +43,10 @@ public class AudioSystem : StaticInstance<AudioSystem> {
 
         _birdsSource.clip = _birds;
         _birdsSource.Play();
+    }
+
+    public void PlayMainMenuTheme()
+    {
+        PlayMusic(_mainMenuTheme);
     }
 }

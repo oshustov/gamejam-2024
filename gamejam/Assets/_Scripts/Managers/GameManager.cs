@@ -16,6 +16,9 @@ public class GameManager : StaticInstance<GameManager>
 
     public void ChangeState(GameState newState)
     {
+        if (newState == State)
+            return;
+
         OnBeforeStateChanged?.Invoke(newState);
 
         State = newState;
