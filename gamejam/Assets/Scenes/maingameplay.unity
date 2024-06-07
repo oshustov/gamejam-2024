@@ -12367,6 +12367,7 @@ MonoBehaviour:
   CubesParent: {fileID: 0}
   CubeWidth: 0.322
   CubeHeight: 0.322
+  TextTime: {fileID: 0}
   _timeToEnd: 0
 --- !u!1001 &582666122
 PrefabInstance:

@@ -3,6 +3,7 @@ using Assets._Scripts.Entities;
 using Assets._Scripts.Gameplay;
 using Assets._Scripts.Systems;
 using DG.Tweening;
+using Oculus.Interaction.Input;
 using OculusSampleFramework;
 using TMPro;
 using UnityEngine;
@@ -46,6 +47,17 @@ namespace Assets._Scripts.Managers
                 : GameOptions.RoundTimeInSeconds;
 
             Debug.Log($"InfluenceLevel is {InfluenceLevel}");
+        }
+
+        public float GetCompletionTime()
+        {
+            var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard;
+
+            var givenTime = isHard ?? false
+                ? GameOptions.RoundTimeInSeconds
+                : GameOptions.RoundTimeInSecondsHard;
+
+            return Mathf.Round(givenTime - _timeToEnd);
         }
 
         public Board MakeBoard()

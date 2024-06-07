@@ -31,12 +31,12 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.Finish:
                 AudioSystem.Instance.PlayWinSound();
                 BoardManager.Instance.Reset();
-                GameOverManager.Instance.SpawnButtons();
+                GameOverManager.Instance.Show(true, BoardManager.Instance.GetCompletionTime());
                 break;
             case GameState.Lose:
                 AudioSystem.Instance.PlayLoseSound();
                 BoardManager.Instance.Reset();
-                GameOverManager.Instance.SpawnButtons();
+                GameOverManager.Instance.Show(false, BoardManager.Instance.GetCompletionTime());
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
