@@ -16,6 +16,10 @@ public class AudioSystem : StaticInstance<AudioSystem> {
 
     [SerializeField] private List<AudioClip> _stoneClips;
 
+    [SerializeField] private AudioClip _winSound;
+    [SerializeField] private AudioClip _looseSound;
+    [SerializeField] private List<AudioClip> _bombsSounds;
+
     public void PlayMusic(AudioClip clip) {
         _musicSource.clip = clip;
         _musicSource.Play();
@@ -48,5 +52,21 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     public void PlayMainMenuTheme()
     {
         PlayMusic(_mainMenuTheme);
+    }
+
+    public void PlayWinSound()
+    {
+        PlaySound(_winSound);
+    }
+
+    public void PlayLoseSound()
+    {
+        PlaySound(_looseSound);
+    }
+
+    public void PlayRandomBombSound()
+    {
+        var rand = Random.Range(0, _bombsSounds.Count);
+        PlaySound(_bombsSounds[rand]);
     }
 }

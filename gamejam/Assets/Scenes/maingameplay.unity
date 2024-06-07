@@ -10343,9 +10343,19 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 24f33a39bf5a4064fafc711b77f2059c, type: 3}
     - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
         type: 3}
+      propertyPath: _winSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bbe59a2fb52f4514ca55a12d4854b4af, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
       propertyPath: _mainTheme
       value: 
       objectReference: {fileID: 8300000, guid: 710b0e31a857b4447a77fadd7d6d7c44, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
+      propertyPath: _looseSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e03b4e885569a0d4496c79a492fabe50, type: 3}
     - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
         type: 3}
       propertyPath: _birdsSource
@@ -10353,8 +10363,18 @@ PrefabInstance:
       objectReference: {fileID: 1274822069}
     - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
         type: 3}
+      propertyPath: _mainMenuTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 091b9f1266c70af4a8af7c86d5ea2eb4, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
       propertyPath: _stoneClips.Array.size
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
+      propertyPath: _bombsSounds.Array.size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
         type: 3}
@@ -10406,6 +10426,31 @@ PrefabInstance:
       propertyPath: _stoneClips.Array.data[9]
       value: 
       objectReference: {fileID: 8300000, guid: 249ec35f57d54654c98a04c1ad23a1d8, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
+      propertyPath: _bombsSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d1905f9154f4fd4699af0d85ce2b00e, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
+      propertyPath: _bombsSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 656409f983a426c4f8af5bc1e931090f, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
+      propertyPath: _bombsSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a733968cc37eeb41abcc99361ed860b, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
+      propertyPath: _bombsSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 20d648c173b8b734a8ff2150f39c9ced, type: 3}
+    - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
+        type: 3}
+      propertyPath: _bombsSounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a0acc49c9d004f84d9bb6bcfa554099b, type: 3}
     - target: {fileID: 1163341469097971916, guid: 1a32bb5aaf21df040a86121d1db770fb,
         type: 3}
       propertyPath: _stoneClips.Array.data[10]

@@ -87,6 +87,9 @@ namespace Assets._Scripts.Managers
                     _board.time.Start();
                 }
 
+                if (cell.Behaviour.Curse)
+                    AudioSystem.Instance.PlayRandomBombSound();
+
                 cell.Influence(InfluenceLevel, RotateCube, _board.ClicksCount, (_board.time.ElapsedMilliseconds / 1000), true);
             }
 

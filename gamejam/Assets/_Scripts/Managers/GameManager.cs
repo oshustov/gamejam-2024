@@ -29,6 +29,12 @@ public class GameManager : StaticInstance<GameManager>
                 AudioSystem.Instance.PlayMainTheme();
                 break;
             case GameState.Finish:
+                AudioSystem.Instance.PlayWinSound();
+                BoardManager.Instance.Reset();
+                GameOverManager.Instance.SpawnButtons();
+                break;
+            case GameState.Lose:
+                AudioSystem.Instance.PlayLoseSound();
                 BoardManager.Instance.Reset();
                 GameOverManager.Instance.SpawnButtons();
                 break;
