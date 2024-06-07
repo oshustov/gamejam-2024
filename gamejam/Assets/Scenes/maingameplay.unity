@@ -12461,6 +12461,7 @@ MonoBehaviour:
   CubeHeight: 0.322
   TextTime: {fileID: 1027528594}
   _timeToEnd: 0
+  CurseFX: {fileID: 8331144985328041862, guid: 5259870bd9f258543bae0a2e4dc50df2, type: 3}
 --- !u!1001 &582666122
 PrefabInstance:
   m_ObjectHideFlags: 0

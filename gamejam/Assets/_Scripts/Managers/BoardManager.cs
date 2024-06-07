@@ -35,6 +35,8 @@ namespace Assets._Scripts.Managers
         private bool _countTime = false;
         public float _timeToEnd;
 
+        public GameObject CurseFX;
+
         void Start()
         {
             var isHard = FindObjectOfType<PersistDataSystem>()?.IsHard ?? false;
@@ -116,7 +118,10 @@ namespace Assets._Scripts.Managers
                 }
 
                 if (cell.Behaviour.Curse)
+                {
                     AudioSystem.Instance.PlayRandomBombSound();
+                    Instantiate(CurseFX, gameCubeComponent.transform.position, new Quaternion(-180,0,0,0));
+                }
 
                 cell.Influence(InfluenceLevel, RotateCube, _board.ClicksCount, (_board.time.ElapsedMilliseconds / 1000), true);
             }
